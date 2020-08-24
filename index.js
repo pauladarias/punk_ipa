@@ -1,7 +1,65 @@
+// Create a filter for the Hoppiness :)
+// 1. Create a const for the radio group
+// 2. Create a variable to track the options selected
+// 3. Create an event listener to update the option selected
+//      - all = ""
+//      - weak = "ibu_lt=35"
+//      - medium = "ibu_gt=34&ibu_lt=75"
+//      - strong = "ibu_gt=74"
+// 4. Implement the new options into the url being fetched
+
 const urlBase = "https://api.punkapi.com/v2/beers";
+const filterABV = document.getElementById("filterABV");
+const filterIBU = document.getElementById("filterIBU");
+let optionsABV = "",
+  optionsIBU = "";
+
+//filters
+
+filterABV.addEventListener("change", (e) => {
+  const value = e.target.value;
+
+  switch (value) {
+    case "all":
+      optionsABV = "";
+      break;
+    case "weak":
+      optionsABV = "abv_lt=4.6";
+      break;
+    case "medium":
+      optionsABV = "abv_gt=4.5&abv_lt=7.6";
+      break;
+    case "strong":
+      optionsABV = "abv_gt=7.5";
+      break;
+  }
+  getBeers();
+});
+
+filterIBU.addEventListener("change", (e) => {
+  const value = e.target.value;
+
+  switch (value) {
+    case "all":
+      optionsIBu = "";
+      break;
+    case "weak":
+      optionsIBu = "ibu_lt=35";
+      break;
+    case "medium":
+      optionsIBU = "ibu_gt=34&ibu_lt=75";
+      break;
+    case "strong":
+      optionsIBu = "ibu_gt=74";
+      break;
+  }
+  getBeers();
+});
 
 async function getBeers() {
-  const beerPromise = await fetch(urlBase);
+  const url = urlBase + "?" + optionsABV + "&" + optionsIBU;
+
+  const beerPromise = await fetch(url);
   const beersJson = await beerPromise.json();
   console.log(beersJson);
 
