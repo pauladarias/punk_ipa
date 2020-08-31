@@ -6,6 +6,7 @@
   --off-white: #f2f2f2;
   --black: rgba(0, 0, 16, 0.8);
   --blue: #0365c0;
+  --lightBlue: rgb(65, 174, 207);
   --green: #00cc4f;
   --orange: #ffb144;
   --disabled: rgba(0, 0, 16, 0.3);
@@ -28,7 +29,7 @@ html {
 
 header {
   padding: 1rem 2rem;
-  background: var(--blue);
+  background: var(--lightBlue);
   color: var(--off-white);
   font-size: 2rem;
   font-weight: bold;
